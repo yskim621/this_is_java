@@ -23,7 +23,22 @@ public class TreeMapExample1 {
 		
 		entry = scores.lowerEntry(95);
 		System.out.println("95점 아래 점수: " + entry.getKey() + "-" + entry.getValue() + "\n");
-
+		
+		entry = scores.higherEntry(95);
+		System.out.println("95점 위의 점수: " + entry.getKey() + "-" + entry.getValue() + "\n");
+		
+		entry = scores.floorEntry(95);
+		System.out.println("95점이거나 바로 아래 점수: " + entry.getKey() + "-" + entry.getValue() + "\n");
+		
+		entry = scores.ceilingEntry(95);
+		System.out.println("95점이거나 바로 위의 점수: " + entry.getKey() + "-" + entry.getValue() + "\n");
+		
+		while(!scores.isEmpty()) {
+			entry = scores.pollFirstEntry();
+			System.out.println(entry.getKey() + "-" + entry.getValue() + "(남은 객체 수: " + scores.size() + ")");
+		}
+		
+		
 	}
 
 }
