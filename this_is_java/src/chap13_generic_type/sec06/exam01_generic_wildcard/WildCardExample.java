@@ -8,10 +8,12 @@ public class WildCardExample {
 
 	}
 	
+	// Student를 포함한 하위 클래스만 매개변수의 제네릭의 ?에 들어갈 수 있음
 	public static void registerCourseStudent(Course<? extends Student> course) {
 		System.out.println(course.getName() + " 수강생: " + Arrays.toString(course.getStudents()));
 	}
 	
+	// Student를 포함한 상위 클래스만 매개변수의 제네릭의 ?에 들어갈 수 있음
 	public static void registerCourseWorker(Course<? super Student> course) {
 		System.out.println(course.getName() + " 수강생: " + Arrays.toString(course.getStudents()));
 
