@@ -13,12 +13,15 @@ public class MaleStudentExample {
 				new Student("박수미", 6, Student.Sex.FEMALE)
 		);
 		
-		totalList.stream()
+		MaleStudent maleStudent = totalList.stream()
 			.filter(s -> s.getSex() == Student.Sex.MALE)
 			.collect(
 					() -> new MaleStudent(),
 					(r,t) -> r.accumulate(t),
 					(r1,r2) -> r1.combine(r2));
+		
+		maleStudent.getList().stream()
+			.forEach(s -> System.out.println(s.getName()));
 	}
 
 }
