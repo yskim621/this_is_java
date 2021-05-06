@@ -2,7 +2,7 @@ package chap16_Stream.sec11.stream_collect;
 
 public class Student {
 	public enum Sex { MALE, FEMALE }
-	public enum City { Seoul, busan }
+	public enum City { Seoul, Busan }
 	
 	private String name;
 	private int score;
