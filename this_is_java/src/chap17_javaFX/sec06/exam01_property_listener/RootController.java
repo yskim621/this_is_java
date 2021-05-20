@@ -1,5 +1,6 @@
 package chap17_javaFX.sec06.exam01_property_listener;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
