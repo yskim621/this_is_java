@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="sec07.exam02_input.RootController"
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="chap17_javaFX.sec07.exam02_input.RootController"
 	prefHeight="380" prefWidth="485" >
    <children>
       <Label layoutX="22.0" layoutY="36.0" text="제목" />
