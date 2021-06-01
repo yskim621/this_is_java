@@ -15,11 +15,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class RootController implements Initializable {
 	@FXML private ListView<String> listView;
 	@FXML private TableView<Phone> tableView;
-	
+	@FXML private ImageView imageView;
 	
 
 	@Override
@@ -32,7 +34,8 @@ public class RootController implements Initializable {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				
+				tableView.getSelectionModel().select(newValue.intValue());
+				tableView.scrollTo(newValue.intValue());
 			}
 			
 		});
@@ -56,10 +59,26 @@ public class RootController implements Initializable {
 		tcImage.setStyle("-fx-alignment: CENTER;");
 		
 		tableView.setItems(phoneList);
+		
+		tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Phone>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Phone> observable, Phone oldValue, Phone newValue) {
+				
+				if(newValue != null) // 선택 전/후로 change method가 호출되므로 선택 해제 시 null 값이 들어감 
+				imageView.setImage(new Image(getClass().getResource("images/" + newValue.getImage()).toString()));
+			}
+				
+		});
 	}
 	
 	public void handleBtnOkAction(ActionEvent e) {
-
+		String item = listView.getSelectionModel().getSelectedItem();
+		System.out.println("ListView 스마트폰: " + item);
+		
+		Phone phone = tableView.getSelectionModel().getSelectedItem();
+		System.out.println("TableView 스마트폰: " + phone);
+		System.out.println("TableView 이미지: " + phone);
 	}
 	
 	public void handleBtnCancelAction(ActionEvent e) {
