@@ -1,8 +1,11 @@
-package chap17_javaFX.sec11.exam01.runlater;
+package chap17_javaFX.sec11.exam01_runlater;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,11 +30,20 @@ public class RootController implements Initializable {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
+				SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 				while(!stop) {
-					
+					String strTime = sdf.format(new Date());
+					Platform.runLater(()->lblTime.setText(strTime));
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		};
+		thread.setDaemon(true);
+		thread.start();
 	}
 	
 	public void handleBtnStop(ActionEvent e) {

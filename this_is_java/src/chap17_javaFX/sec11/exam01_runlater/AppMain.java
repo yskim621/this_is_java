@@ -1,4 +1,4 @@
-package chap17_javaFX.sec11.exam01.runlater;
+package chap17_javaFX.sec11.exam01_runlater;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
