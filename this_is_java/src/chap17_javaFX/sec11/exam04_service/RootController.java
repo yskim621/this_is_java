@@ -25,14 +25,17 @@ public class RootController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		btnStart.setOnAction(event->handleBtnStart(event));
 		btnStop.setOnAction(event->handleBtnStop(event));
+		timeService = new TimeService();
+		timeService.start();
 	}
 	
 	public void handleBtnStart(ActionEvent e) {
-		
+		timeService.restart();
+		lblResult.setText("");
 	}
 	
 	public void handleBtnStop(ActionEvent e) {
-		
+		timeService.cancel();
 	}
 	
 	class TimeService extends Service<Integer> {
@@ -55,12 +58,30 @@ public class RootController implements Initializable {
 							if(isCancelled()) break;
 						}
 					}
-					return null;
+					return result;
 				}
 				
 			};
+			
+			progressBar.progressProperty().bind(task.progressProperty());
+			lblWorkDone.textProperty().bind(task.messageProperty());
+			
 			return task;
 		}
 		
+		@Override
+		protected void succeeded() {
+			lblResult.setText(String.valueOf(getValue()));
+		}
+		
+		@Override
+		protected void cancelled() {
+			lblResult.setText("취소됨");
+		}
+		
+		@Override
+		protected void failed() {
+			lblResult.setText("실패");
+		}
 	}
 }
