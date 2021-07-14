@@ -138,7 +138,7 @@ public class ClientExample extends Application {
 		root.setBottom(bottom);
 		
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("app.css").toString());
+		//scene.getStylesheets().add(getClass().getResource("app.css").toString());
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Client");
 		primaryStage.setOnCloseRequest(event->stopClient());
