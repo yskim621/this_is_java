@@ -27,12 +27,12 @@ public class ClientExample extends Application {
 					socket = new Socket();
 					socket.connect(new InetSocketAddress("localhost", 5001));
 					Platform.runLater(()->{
-						displayText("[���� �Ϸ�: "  + socket.getRemoteSocketAddress() + "]");
+						displayText("[연결 완료: "  + socket.getRemoteSocketAddress() + "]");
 						btnConn.setText("stop");
 				        btnSend.setDisable(false);
 					});
 				} catch(Exception e) {
-					Platform.runLater(()->displayText("[���� ��� �ȵ�]"));
+					Platform.runLater(()->displayText("[서버 통신 안됨]"));
 					if(!socket.isClosed()) { stopClient(); }
 					return;
 				}
@@ -45,7 +45,7 @@ public class ClientExample extends Application {
 	void stopClient() {
 		try {
 			Platform.runLater(()->{
-				displayText("[���� ����]");
+				displayText("[연결 끊음]");
 				btnConn.setText("start");
 				btnSend.setDisable(true);
 			});
@@ -69,9 +69,9 @@ public class ClientExample extends Application {
 				
 				String data = new String(byteArr, 0, readByteCount, "UTF-8");
 				
-				Platform.runLater(()->displayText("[�ޱ� �Ϸ�] "  + data));
+				Platform.runLater(()->displayText("[받기 완료] "  + data));
 			} catch (Exception e) {
-				Platform.runLater(()->displayText("[���� ��� �ȵ�]"));
+				Platform.runLater(()->displayText("[서버 통신 안됨]"));
 				stopClient();
 				break;
 			}
