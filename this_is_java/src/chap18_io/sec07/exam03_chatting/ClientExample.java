@@ -87,9 +87,9 @@ public class ClientExample extends Application {
 					OutputStream outputStream = socket.getOutputStream();
 					outputStream.write(byteArr);
 					outputStream.flush();
-					Platform.runLater(()->displayText("[������ �Ϸ�]"));
+					Platform.runLater(()->displayText("[보내기 완료]"));
 				} catch(Exception e) {
-					Platform.runLater(()->displayText("[���� ��� �ȵ�]"));
+					Platform.runLater(()->displayText("[서버 통신 안됨]"));
 					stopClient();
 				}				
 			}
